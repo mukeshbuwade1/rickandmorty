@@ -1,14 +1,16 @@
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import Colors from '../assets/Colors'
 
 const SimpleLoader = () => {
   return (
     <View style={{
         flex:1,
         justifyContent:"center",
-        alignItems:"center"
+        alignItems:"center",
+        backgroundColor:Colors.black
     }}>
-    <ActivityIndicator size={"large"} />
+    <ActivityIndicator color={Colors.white} size={"large"} />
     </View>
   )
 }

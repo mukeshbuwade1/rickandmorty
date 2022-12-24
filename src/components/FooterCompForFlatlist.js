@@ -1,14 +1,31 @@
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native'
+import { ActivityIndicator, StyleSheet,  } from 'react-native'
 import React from 'react'
+import { Text, View,Pressable, Heading } from 'native-base'
+import COLOR from '../assets/Colors'
 
-const FooterCompForFlatlist = () => {
+const FooterCompForFlatlist = (props) => {
+
   return (
-    <View style={{height:150, width:"100%" , alignItems:"center"}} 
-    >
-      <ActivityIndicator size={"large"} color={"#FFF"} />
+    <View style={{ height: 100, width: "100%", alignItems: "center", paddingTop: 20 }}    >
+      {
+        props?.paginationLoading
+          ? <ActivityIndicator size={"large"} color={"#FFF"} />
+          : <Pressable
+            onPress={props?.getData ? () => props.getData() : () => { }}
+            bg={COLOR.lightGray}
+            py={2}
+            px={3}
+            rounded={3}
+          >
+            <Heading fontSize={14} bold>Load More</Heading>
+          </Pressable>
+      }
+
     </View>
   )
 }
+
+
 
 export default FooterCompForFlatlist
 

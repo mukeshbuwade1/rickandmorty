@@ -4,10 +4,12 @@ import Colors from "./src/assets/Colors";
 import NetInfo from "@react-native-community/netinfo";
 import OfflineInfoHeader from "./src/components/OfflineInfoHeader";
 
-
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import UserList from "./src/screens/UserList";
+import CharacterList from "./src/screens/CharacterList";
+import theme from "./src/theme/theme";
+import CharacterDetailScreen from "./src/screens/CharacterDetailScreen";
+
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -26,18 +28,17 @@ export default function App() {
     return (
       <NavigationContainer  >
         <Stack.Navigator screenOptions={{headerShown:false}}>
-          <Stack.Screen name="UserList" component={UserList} />
-       
-       {/*  <Stack.Screen name="Settings" component={SettingsScreen} /> */}
+          <Stack.Screen name="CharacterList" component={CharacterList} />
+          <Stack.Screen name="CharacterDetailScreen" component={CharacterDetailScreen} />
+
         </Stack.Navigator>
       </NavigationContainer>
     );
   }
 
   return (
-    <NativeBaseProvider>
-      <StatusBar backgroundColor={isConnected ? Colors.primary : Colors.danger} />
-      {isConnected ? null : <OfflineInfoHeader />}
+    <NativeBaseProvider theme={theme}>
+     <OfflineInfoHeader />
       <RootNavigation />
     </NativeBaseProvider>
   );

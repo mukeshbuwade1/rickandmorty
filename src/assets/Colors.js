@@ -3,5 +3,12 @@ export default COLOR={
     danger:"red",
     black:"#252525",
     white:"#fff",
-    green:"green"
+    gray:"#777",
+    green:"green",
+    cardBg:"#323232",
+    lightGray:"#999",
+
+    textColorLight:"#bbb",
+    textColorDark:"#999",
+    
 }

@@ -1,16 +1,68 @@
-import { NativeBaseProvider, Box, StatusBar, Text, View, Center, HStack } from "native-base";
+// import { NativeBaseProvider, Box, StatusBar, Text, View, Center, HStack } from "native-base";
+// import React from 'react'
+// import Colors from "../assets/Colors";
+// // import Icon from 'react-native-vector-icons/dist/MaterialIcons';
+
+// const OfflineInfoHeader = () => {
+//     return (
+//         <Center bg={Colors.danger}>
+//             <HStack space={2} alignItems={"center"}>
+//                 <Text fontWeight={"500"} fontSize={12} pb={0.5} color={Colors.white}>You Are Offline</Text>
+//                 {/* <Icon name="wifi-off" size={15} color={COLORS.white} /> */}
+//             </HStack>
+//         </Center>
+//     )
+// }
+
+// export default OfflineInfoHeader
+
+
+
+import { StatusBar,  Text, View } from 'react-native'
 import React from 'react'
-import Colors from "../assets/Colors";
-// import Icon from 'react-native-vector-icons/dist/MaterialIcons';
+import NetInfo from "@react-native-community/netinfo";
+import Colors from '../assets/Colors';
+import Icon from 'react-native-vector-icons/dist/MaterialIcons';
+
+
+
+
+
+
+
 
 const OfflineInfoHeader = () => {
+    const [netInfo, setNetInfo] = React.useState({})
+
+    console.log("Network Status--> Is connected:", netInfo.isConnected, ", Connection type:", netInfo.type, ", MaxSpeed:", netInfo?.details?.rxLinkSpeed, "Mbps");
+
+    // const {network}=useSelector(state=> state)
+    // console.log("network check",network)
+
+    React.useEffect(() => {
+        // Subscribe
+        const unsubscribe = NetInfo.addEventListener(state => setNetInfo(state));
+
+        // Unsubscribe
+        return () => unsubscribe();
+    }, [])
+
+
     return (
-        <Center bg={Colors.danger}>
-            <HStack space={2} alignItems={"center"}>
-                <Text fontWeight={"500"} fontSize={12} pb={0.5} color={Colors.white}>You Are Offline</Text>
-                {/* <Icon name="wifi-off" size={15} color={COLORS.white} /> */}
-            </HStack>
-        </Center>
+        <View>
+            <StatusBar backgroundColor={!netInfo?.isConnected ? Colors.danger : Colors.cardBg} />
+            {
+                !netInfo?.isConnected && <View style={{
+                    backgroundColor: Colors.danger,
+                    flexDirection: "row",
+                    justifyContent: "center", alignItems: "center",
+                    paddingBottom: 2
+                }} >
+                    <Text style={{ color: Colors.white,fontWeight:"600", marginRight: 5,  fontSize:12 }} >You are not connected to internet</Text>
+                    <Icon name="wifi-off" size={15} color={Colors.white} />
+                </View>
+            }
+        </View>
     )
 }
 
