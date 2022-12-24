@@ -6,6 +6,8 @@ import { useNavigation } from '@react-navigation/native';
 import FooterCompForFlatlist from './FooterCompForFlatlist';
 import EmptyList from './EmptyList';
 import APIService from '../services/APIService';
+import SimpleLoader from './SimpleLoader';
+import font from '../assets/font';
 
 const ListingView = (props) => {
     // react hooks
@@ -80,11 +82,11 @@ const ListingView = (props) => {
                                     backgroundColor: item?.status == "Alive" ? COLORS.green : COLORS.danger
                                 }}
                             />
-                            <Text numberOfLines={1} fontWeight={"bold"} fontSize={11} color={COLORS.white}>{item?.status}</Text>
+                            <Text numberOfLines={1} fontFamily={font.Lacquer} fontSize={11} color={COLORS.white}>{item?.status}</Text>
 
-                            <Text numberOfLines={1} fontWeight={"bold"} fontSize={11} color={COLORS.white}> - {item?.gender}</Text>
+                            <Text numberOfLines={1} fontFamily={font.Lacquer} fontSize={11} color={COLORS.white}> - {item?.gender}</Text>
                         </HStack>
-                        <Text numberOfLines={1} fontWeight={"bold"} color={COLORS.white} fontSize={15}  >{item.name}</Text>
+                        <Text numberOfLines={1} color={COLORS.white} fontSize={15}  fontFamily={font.Lacquer} >{item.name}</Text>
                     </View>
                 </VStack>
             </Pressable>
@@ -94,6 +96,7 @@ const ListingView = (props) => {
     const getApiData = () => {
         getData(page + 1)
     }
+    if(isLoading) return <SimpleLoader/>
     return (
         <FlatList
             data={Data}

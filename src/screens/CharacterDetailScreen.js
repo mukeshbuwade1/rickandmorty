@@ -6,6 +6,7 @@ import { Dimensions } from 'react-native';
 import EmptyList from '../components/EmptyList';
 import APIService from '../services/APIService';
 import SimpleLoader from '../components/SimpleLoader';
+import font from '../assets/font';
 
 const ContainerComponent = (props) => (
     <View bg={COLORS.cardBg}
@@ -28,8 +29,8 @@ const ContainerComponent = (props) => (
 // )
 const InfoContainer = (props) => (
     <HStack my={2}>
-        <Text bold color={COLORS.textColorDark} >{props?.title ?? "N/A"} : </Text>
-        <Text color={COLORS.textColorDark} >{props?.value ?? "N/A"}</Text>
+        <Text style={{ fontFamily: font.Lacquer }} bold color={COLORS.textColorDark} >{props?.title ?? "N/A"} : </Text>
+        <Text style={{ fontFamily: font.Lacquer }} color={COLORS.textColorDark} >{props?.value ?? "N/A"}</Text>
     </HStack>
 )
 
@@ -105,10 +106,10 @@ const CharacterDetailScreen = (props) => {
                 <Icon name={"chevron-back-sharp"} color={COLORS.lightGray} size={25} />
             </Pressable>
             <ScrollView showsVerticalScrollIndicator={false}
-             contentContainerStyle={{
-                paddingTop:30
-                // borderWidth:1,borderColor:"red"
-            }}
+                contentContainerStyle={{
+                    paddingTop: 30
+                    // borderWidth:1,borderColor:"red"
+                }}
             >
                 <Center  >
                     <Image
@@ -121,7 +122,21 @@ const CharacterDetailScreen = (props) => {
                         borderWidth={3}
                         borderColor={COLORS.gray}
                     />
-                    <Heading py={1} color={COLORS.lightGray} mb={2} fontSize={20}>{details?.name}</Heading>
+                    <HStack alignItems={"center"} space={2} mb={2}>
+                        <Heading py={2} style={{
+                            fontFamily: font.Lacquer
+                        }} color={COLORS.lightGray} fontSize={25}>{details?.name}</Heading>
+                        <View
+                            style={{
+
+                                width: 15,
+                                height: 15,
+                                borderRadius: 15,
+                                marginRight: 3,
+                                backgroundColor: details?.status == "Alive" ? COLORS.green : COLORS.danger
+                            }}
+                        />
+                    </HStack>
 
                 </Center>
 
@@ -141,7 +156,7 @@ const CharacterDetailScreen = (props) => {
                     />
                 </ContainerComponent>
 
-                <Heading mt={5} color={COLORS.lightGray}  fontSize={20}>Origin</Heading>
+                <Heading style={{ fontFamily: font.Lacquer }} mt={5} color={COLORS.lightGray} fontSize={20}>Origin</Heading>
                 <ContainerComponent >
                     <InfoContainer
                         title="name"
@@ -161,7 +176,7 @@ const CharacterDetailScreen = (props) => {
                     />
                 </ContainerComponent>
 
-                <Heading mt={5} color={COLORS.lightGray} fontSize={20}>Location</Heading>
+                <Heading style={{ fontFamily: font.Lacquer }} mt={5} color={COLORS.lightGray} fontSize={20}>Location</Heading>
                 <ContainerComponent >
                     <InfoContainer
                         title="name"

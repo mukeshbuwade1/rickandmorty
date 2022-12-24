@@ -9,6 +9,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import CharacterList from "./src/screens/CharacterList";
 import theme from "./src/theme/theme";
 import CharacterDetailScreen from "./src/screens/CharacterDetailScreen";
+import SplashScreen from "./src/screens/SplashScreen";
 
 const Stack = createStackNavigator();
 
@@ -27,10 +28,10 @@ export default function App() {
   function RootNavigation() {
     return (
       <NavigationContainer  >
-        <Stack.Navigator screenOptions={{headerShown:false}}>
+        <Stack.Navigator screenOptions={{headerShown:false}} initialRouteName={"SplashScreen"}>
+        <Stack.Screen name="SplashScreen" component={SplashScreen} />
           <Stack.Screen name="CharacterList" component={CharacterList} />
           <Stack.Screen name="CharacterDetailScreen" component={CharacterDetailScreen} />
-
         </Stack.Navigator>
       </NavigationContainer>
     );

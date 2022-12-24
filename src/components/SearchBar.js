@@ -4,6 +4,7 @@ import { Keyboard } from 'react-native';
 // import img from "../assets/image/login-bg.png"
 import Icon from 'react-native-vector-icons/dist/Ionicons';
 import COLORS from '../assets/Colors';
+import font from '../assets/font';
 
 const SearchBar = (props) => {
     const [text, setText] = React.useState("");
@@ -25,6 +26,7 @@ const SearchBar = (props) => {
                 borderColor={COLORS.black}
                 color={COLORS.white}
                 bg={COLORS.cardBg}
+                fontFamily={font.Lacquer}
                 w={"85%"}
                 pl={3}
                 _focus={{
