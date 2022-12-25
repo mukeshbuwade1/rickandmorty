@@ -1,16 +1,14 @@
-import { Center, FlatList, HStack, Image, Pressable, Text, View, VStack } from 'native-base'
-import React, { useEffect, useState } from 'react';
+import { Center,  Text } from 'native-base'
+import React from 'react';
 import Icon from 'react-native-vector-icons/dist/Ionicons';
-import COLORS from '../assets/Colors';
-import { Dimensions } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import FooterCompForFlatlist from './FooterCompForFlatlist';
 import Colors from '../assets/Colors';
+import font from '../assets/font';
 
 const EmptyList = () => {
   return (
-    <Center>
-      <Text color={Colors.white}>Nothing to show </Text>
+    <Center mt={20}>
+      <Text fontSize={20} style={{ fontFamily: font.Lacquer }} color={Colors.white}>Nothing To Show </Text>
+      <Text style={{ fontFamily: font.Lacquer }} color={Colors.white}>try again</Text>
     </Center>
   )
 }

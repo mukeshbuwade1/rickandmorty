@@ -1,9 +1,8 @@
-import { Box, Button, Center, Container, FlatList, Flex, Heading, HStack, Image, Input, Pressable, ScrollView, Text, View, VStack } from 'native-base'
+import { Box, Center, Heading, HStack, Image, Pressable, ScrollView, Text, View, } from 'native-base'
 import React, { useEffect, useState } from 'react';
 import Icon from 'react-native-vector-icons/dist/Ionicons';
 import COLORS from '../assets/Colors';
 import { Dimensions } from 'react-native';
-import EmptyList from '../components/EmptyList';
 import APIService from '../services/APIService';
 import SimpleLoader from '../components/SimpleLoader';
 import font from '../assets/font';
@@ -21,12 +20,6 @@ const ContainerComponent = (props) => (
     </View>
 )
 
-// const InfoContainer = (props) => (
-//     <View my={2}>
-//         <Text color={COLORS.textColorDark} >{props?.title ?? "N/A"}</Text>
-//         <Heading color={COLORS.textColorDark}  fontSize={20}>{props?.value ?? ""}</Heading>
-//     </View>
-// )
 const InfoContainer = (props) => (
     <HStack my={2}>
         <Text style={{ fontFamily: font.Lacquer }} bold color={COLORS.textColorDark} >{props?.title ?? "N/A"} : </Text>
@@ -37,20 +30,17 @@ const InfoContainer = (props) => (
 const CharacterDetailScreen = (props) => {
     const w = Dimensions.get("window").width
     const routeParam = props.route.params || {}
-
+    // redux hooks
     const [isLoading, setIsLoading] = useState(true);
     const [details, setDetails] = useState(false);
     const [origin, setOrigin] = useState({});
     const [location, setLocation] = useState({});
-
 
     useEffect(() => {
         (routeParam.id) && getData(routeParam.id)
     }, [])
 
     //helper methods
-
-
     async function getLocationAndOrigin(obj) {
         let id = obj?.url.split("/").pop()
         let url = 'location/' + id;
@@ -59,9 +49,9 @@ const CharacterDetailScreen = (props) => {
             if (res.id) {
                 return res
             }
-            else console.log("something went wrong")
+
         } else {
-            // alert("api error")
+            alert("res?.errorMsg")
             console.log("ERROR", res?.errorMsg)
         }
     }
@@ -71,10 +61,8 @@ const CharacterDetailScreen = (props) => {
         let res = await APIService.getData(url);
         if (!res?.error) {
             if (res.id) {
-
                 if (res?.origin) {
                     let originRes = await getLocationAndOrigin(res?.origin)
-                    console.log("originRes------->", originRes)
                     if (originRes) setOrigin(originRes)
                     else setOrigin(res?.origin)
                 }
@@ -88,7 +76,7 @@ const CharacterDetailScreen = (props) => {
             else alert("something went wrong")
             setIsLoading(false)
         } else {
-            alert("api error")
+            alert(res?.errorMsg)
             console.log("ERROR", res?.errorMsg)
         }
     }
@@ -108,9 +96,9 @@ const CharacterDetailScreen = (props) => {
             <ScrollView showsVerticalScrollIndicator={false}
                 contentContainerStyle={{
                     paddingTop: 30
-                    // borderWidth:1,borderColor:"red"
                 }}
             >
+                {/* profile image and name */}
                 <Center  >
                     <Image
                         alt='Character image'
@@ -128,7 +116,6 @@ const CharacterDetailScreen = (props) => {
                         }} color={COLORS.lightGray} fontSize={25}>{details?.name}</Heading>
                         <View
                             style={{
-
                                 width: 15,
                                 height: 15,
                                 borderRadius: 15,
@@ -137,10 +124,8 @@ const CharacterDetailScreen = (props) => {
                             }}
                         />
                     </HStack>
-
                 </Center>
-
-
+                {/* basic info */}
                 <ContainerComponent >
                     <InfoContainer
                         title="Status"
@@ -155,7 +140,7 @@ const CharacterDetailScreen = (props) => {
                         value={details?.gender}
                     />
                 </ContainerComponent>
-
+                {/* origin info */}
                 <Heading style={{ fontFamily: font.Lacquer }} mt={5} color={COLORS.lightGray} fontSize={20}>Origin</Heading>
                 <ContainerComponent >
                     <InfoContainer
@@ -175,7 +160,7 @@ const CharacterDetailScreen = (props) => {
                         value={origin?.residents?.length}
                     />
                 </ContainerComponent>
-
+                {/* location info */}
                 <Heading style={{ fontFamily: font.Lacquer }} mt={5} color={COLORS.lightGray} fontSize={20}>Location</Heading>
                 <ContainerComponent >
                     <InfoContainer
@@ -195,19 +180,6 @@ const CharacterDetailScreen = (props) => {
                         value={location?.residents?.length}
                     />
                 </ContainerComponent>
-
-
-
-
-
-
-
-                <HStack my={2} justifyContent={"space-between"} alignItems={"center"} >
-
-
-                </HStack>
-
-
             </ScrollView>
         </Box>
     )

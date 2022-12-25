@@ -1,7 +1,6 @@
-import { Box, Button, Heading, HStack, Image, Input, Pressable, Text, View, VStack } from 'native-base'
+import { HStack,Input, Pressable, Text, View, VStack } from 'native-base'
 import React from 'react';
 import { Keyboard } from 'react-native';
-// import img from "../assets/image/login-bg.png"
 import Icon from 'react-native-vector-icons/dist/Ionicons';
 import COLORS from '../assets/Colors';
 import font from '../assets/font';
@@ -32,7 +31,10 @@ const SearchBar = (props) => {
                 _focus={{
                     borderColor: COLORS.black,
                     bg: COLORS.cardBg,
-                    color: COLORS.white
+                    color: COLORS.white,
+                }}
+                _input={{
+                    selectionColor:COLORS.lightGray
                 }}
             />
             <Pressable onPress={() => {

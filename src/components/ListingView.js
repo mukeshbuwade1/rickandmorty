@@ -14,13 +14,11 @@ const ListingView = (props) => {
     const navigation = useNavigation();
     const [page, setPage] = useState(0);
     const [Data, setData] = useState([]);
-
     const [paginationLoading, setPaginationLoading] = useState(false);
     const [isRefreshing, setIsRefreshing] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => { getData() }, [props.name])
-
 
     //helper methods
     async function getData(page, refreshing) {

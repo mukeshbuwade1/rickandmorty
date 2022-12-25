@@ -2,6 +2,7 @@ import { ActivityIndicator, StyleSheet,  } from 'react-native'
 import React from 'react'
 import { Text, View,Pressable, Heading } from 'native-base'
 import COLOR from '../assets/Colors'
+import font from '../assets/font'
 
 const FooterCompForFlatlist = (props) => {
 
@@ -17,10 +18,9 @@ const FooterCompForFlatlist = (props) => {
             px={3}
             rounded={3}
           >
-            <Heading fontSize={14} bold>Load More</Heading>
+            <Heading fontSize={14} style={{ fontFamily: font.Lacquer }} bold>Load More</Heading>
           </Pressable>
       }
-
     </View>
   )
 }

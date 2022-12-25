@@ -1,38 +1,11 @@
-// import { NativeBaseProvider, Box, StatusBar, Text, View, Center, HStack } from "native-base";
-// import React from 'react'
-// import Colors from "../assets/Colors";
-// // import Icon from 'react-native-vector-icons/dist/MaterialIcons';
-
-// const OfflineInfoHeader = () => {
-//     return (
-//         <Center bg={Colors.danger}>
-//             <HStack space={2} alignItems={"center"}>
-//                 <Text fontWeight={"500"} fontSize={12} pb={0.5} color={Colors.white}>You Are Offline</Text>
-//                 {/* <Icon name="wifi-off" size={15} color={COLORS.white} /> */}
-//             </HStack>
-//         </Center>
-//     )
-// }
-
-// export default OfflineInfoHeader
-
-
-
 import { StatusBar,  Text, View } from 'react-native'
 import React from 'react'
 import NetInfo from "@react-native-community/netinfo";
 import Colors from '../assets/Colors';
 import Icon from 'react-native-vector-icons/dist/MaterialIcons';
 
-
-
-
-
-
-
-
 const OfflineInfoHeader = () => {
-    const [netInfo, setNetInfo] = React.useState({})
+    const [netInfo, setNetInfo] = React.useState({isConnected:true})
 
     console.log("Network Status--> Is connected:", netInfo.isConnected, ", Connection type:", netInfo.type, ", MaxSpeed:", netInfo?.details?.rxLinkSpeed, "Mbps");
 

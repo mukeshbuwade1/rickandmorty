@@ -25,25 +25,18 @@ export default theme = extendTheme({
                 normal: "Roboto-Medium",
                 italic: "Roboto-MediumItalic",
             },
-            Montserrat: {
-                600: {
-                    normal: 'Montserrat-Medium',
-                },
-                // 800: {
-                //     normal: 'Roboto-Bold',
-                //     italic: 'Roboto-BoldItalic',
-                // },
-                // 900: {
-                //     normal: 'Roboto-Bold',
-                //     italic: 'Roboto-BoldItalic',
-                // },
+        },
+        Montserrat: {
+            600: {
+                normal: 'Montserrat-Medium',
             },
+        },
 
-            Lacquer: {
-                400: {
-                    normal: 'Lacquer-Regular',
-                }
+        Lacquer: {
+            400: {
+                normal: 'Lacquer-Regular',
             }
+
         },
     },
 
@@ -52,7 +45,7 @@ export default theme = extendTheme({
         heading: "Roboto",
         body: "Roboto",
         mono: "Roboto",
-        text:"Montserrat",
-        Lacquer:"Lacquer"
+        text: "Montserrat",
+        Lacquer: "Lacquer"
     },
 });
